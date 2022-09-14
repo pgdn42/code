@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import countries from "world-countries";
 
 function CountryInfo(props) {
@@ -9,9 +10,19 @@ function CountryInfo(props) {
     ? (display = Math.round(area * 100) / 100 + " million km")
     : (display = props.data.area + " km");
 
+  const getFlagEmoji = (countryCode) =>
+    String.fromCodePoint(
+      ...[...countryCode.toUpperCase()].map((x) => 0x1f1a5 + x.charCodeAt())
+    );
+
   function bigCountry() {
     return (
       <div className="countryInfo">
+        <img
+          src={`https://flagcdn.com/48x36/${props.data.cca2.toLowerCase()}.png`}
+          alt="..."
+        />
+        {getFlagEmoji(props.data.cca2.toLowerCase())}
         <p>
           {props.data.name.common}
           <small> {display}</small>
@@ -45,6 +56,11 @@ function CountryInfo(props) {
   function smallCountry() {
     return (
       <div className="countryInfo">
+        <img
+          src={`https://flagcdn.com/48x36/${props.data.cca2.toLowerCase()}.png`}
+          alt="..."
+        />
+        {getFlagEmoji(props.data.cca2.toLowerCase())}
         <p>
           {props.data.name.common}
           <small> {display}</small>
@@ -69,7 +85,11 @@ function CountryInfo(props) {
     );
   }
 
-  return <>{props.detailed ? bigCountry() : smallCountry()}</>;
+  return (
+    <Link to={"/Country/" + props.data.cca3}>
+      {props.detailed ? bigCountry() : smallCountry()}
+    </Link>
+  );
 }
 
 export default CountryInfo;

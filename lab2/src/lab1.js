@@ -1,7 +1,25 @@
 import "./lab1.css";
 import countries from "world-countries";
 import CountryInfo from "./CountryInfo";
+import Country from "./pages/Country";
 import React, { useState } from "react";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import Layout from "./pages/Layout";
+
+function Lab2() {
+  return (
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Lab1 />} />
+            <Route path="Country/:cca3" element={<Country />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
 
 function Lab1() {
   countries.sort((a, b) => b.area - a.area);
@@ -19,14 +37,14 @@ function Lab1() {
     if (event.key === "Enter") {
       saved == null
         ? SetSaved(
-            countries.filter((c) =>
-              c.name.common.toLowerCase().includes(search)
+            countries.filter(
+              (c) => c.name.common.toLowerCase().indexOf(search) === 0
             )
           )
         : SetSaved(
             saved.concat(
-              countries.filter((c) =>
-                c.name.common.toLowerCase().includes(search)
+              countries.filter(
+                (c) => c.name.common.toLowerCase().indexOf(search) === 0
               )
             )
           );
@@ -34,21 +52,23 @@ function Lab1() {
   }
 
   search == null
-    ? (usableCountries = countries)
-    : (usableCountries = countries.filter((c) =>
-        c.name.common.toLowerCase().includes(search)
+    ? (usableCountries = usableCountries)
+    : (usableCountries = usableCountries.filter(
+        (c) => c.name.common.toLowerCase().indexOf(search) === 0
       ));
 
   //var bigCountries = usableCountries.splice(0, 5);
 
   return (
     <>
-      <input type="text" onKeyDown={SaveSearch} onChange={ChangeSearch}></input>
       <div
         className="App"
-        style={{ display: "flex", width: "50%", backgroundColor: "grey" }}
+        style={{
+          width: "50%",
+          backgroundColor: "grey",
+        }}
       >
-        <div
+        {/*        <div
           style={{
             float: "left",
             width: "50%",
@@ -61,17 +81,23 @@ function Lab1() {
           {saved.map((country) => (
             <CountryInfo key={country.cca3} data={country} detailed={true} />
           ))}
-        </div>
+        </div>*/}
         <div
           style={{
-            float: "right",
-            width: "50%",
+            width: "100%",
             display: "flex",
             alignItems: "stretch",
             flexDirection: "column",
             justifyContent: "space-between",
           }}
         >
+          <input
+            type="text"
+            onKeyDown={SaveSearch}
+            onChange={ChangeSearch}
+            style={{ height: "2em" }}
+          ></input>
+
           {usableCountries.map((country) => (
             <CountryInfo key={country.cca3} data={country} detailed={false} />
           ))}
@@ -81,4 +107,4 @@ function Lab1() {
   );
 }
 
-export default Lab1;
+export default Lab2;

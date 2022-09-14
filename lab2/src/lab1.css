@@ -1,29 +1,25 @@
 .App {
-    text-align: left;
-    display: flex;
-    justify-content: center;
-  }
-  
-.countryInfo p{
+  text-align: left;
+  justify-content: center;
+  margin: auto;
+}
+
+.countryInfo p {
   font-weight: bold;
   font-size: 1.3em; /* em is the preferred unit */
 }
-.countryInfo small, sup{
+.countryInfo small,
+sup {
   font-weight: normal;
-
 }
-.countryInfo{
-    flex: 1 1;
-    padding:0.5em;
-    margin: 0.25em;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    background-color:rgb(192, 192, 192);
-    border-radius: 0px 0px 10px 10px ;
-
+.countryInfo {
+  flex: 1 1;
+  padding: 0.5em;
+  margin: 0.25em;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  background-color: rgb(192, 192, 192);
 }
 .countryInfo:nth-child(odd) {
-  background-color:rgb(221, 221, 221);
-  border-radius: 10px 10px 0px 0px;
-
+  background-color: rgb(221, 221, 221);
 }
