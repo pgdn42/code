@@ -97,10 +97,10 @@ function Lab1 () {
         </div> */}
         <label style={{ margin: 'auto', fontSize: '1em' }}>
           Currently selected region: {searchRegion == null ? 'World' : searchRegion}
-          <br /> Your selected region and search..:
-          <br /> Contains {usableCountries.length} countries
-          <br /> Biggest area: {usableCountries[0].area} km <sup>2</sup>
-          <br /> Smallest area: {usableCountries[usableCountries.length - 1].area} km <sup>2</sup>
+          {/*           <br /> Your selected region and search..:
+          <br /> Contains {usableCountries == null ? 'NaN' : usableCountries.length} countries
+          <br /> Biggest area: {usableCountries == null ? 'NaN' : usableCountries[0].area} km <sup>2</sup>
+          <br /> Smallest area: {usableCountries == null ? 'NaN' : usableCountries[usableCountries.length - 1].area} km <sup>2</sup> */}
         </label>
         <p>Select region, and search for name or smaller than a certain area in km <sup>2</sup></p>
 
